@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overwatch Funko Pop — Complete Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070f;--surface:#0e0e1e;--surface2:#14142a;--border:rgba(255,255,255,0.07);--border-bright:rgba(255,255,255,0.15);--orange:#f97316;--orange-dim:rgba(249,115,22,0.15);--yellow:#fbbf24;--green:#22c55e;--text:#e8eaf0;--muted:#5a6070;--muted2:#8892a4;--radius:14px;--card-w:162px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;min-height:100vh;padding-bottom:80px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.5}
+header{position:relative;overflow:hidden;padding:64px 24px 48px;text-align:center;background:linear-gradient(180deg,#0d0d22 0%,var(--bg) 100%);border-bottom:1px solid var(--border)}
+header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% -20%,rgba(249,115,22,.18) 0%,transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black,transparent)}
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:8px;text-transform:uppercase;color:var(--orange);margin-bottom:16px;position:relative;z-index:1}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7.5rem);letter-spacing:6px;line-height:.9;position:relative;z-index:1;background:linear-gradient(135deg,#f97316 0%,#fbbf24 35%,#e2e8f0 70%,#38bdf8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{font-size:13px;color:var(--muted2);margin-top:14px;position:relative;z-index:1;letter-spacing:.5px}
+.subtitle strong{color:var(--orange);font-weight:600}
+.stats{display:flex;justify-content:center;gap:0;margin:28px auto 0;max-width:500px;position:relative;z-index:1;border:1px solid var(--border-bright);border-radius:12px;overflow:hidden;backdrop-filter:blur(8px);background:rgba(14,14,30,.6)}
+.stat{flex:1;padding:12px 16px;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:var(--text);line-height:1}
+.stat-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.controls{max-width:1240px;margin:32px auto 0;padding:0 20px}
+.search-wrap{position:relative;margin-bottom:16px}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
+input[type="text"]{width:100%;background:var(--surface);border:1px solid var(--border-bright);border-radius:10px;color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;padding:13px 18px 13px 44px;outline:none;transition:border-color .2s,box-shadow .2s}
+input[type="text"]:focus{border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-dim)}
+input[type="text"]::placeholder{color:var(--muted)}
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;align-items:center}
+.filter-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-right:4px;white-space:nowrap}
+.filter-btn{background:transparent;border:1px solid var(--border-bright);border-radius:999px;color:var(--muted2);cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;transition:all .15s;white-space:nowrap}
+.filter-btn:hover{background:rgba(255,255,255,.06);color:var(--text);border-color:rgba(255,255,255,.25)}
+.filter-btn.active{color:#000;border-color:transparent}
+.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:8px}
+.owned-pill{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--green);font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px}
+.count-pill{font-size:12px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px}
+.view-toggle{display:flex;gap:4px}
+.view-btn{background:var(--surface);border:1px solid var(--border);border-radius:7px;color:var(--muted);cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s}
+.view-btn.active{background:var(--orange);border-color:var(--orange);color:#000}
+.section-label{max-width:1240px;margin:28px auto 12px;padding:0 20px;display:flex;align-items:center;gap:14px}
+.section-label span{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.grid{max-width:1240px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--card-w),1fr));gap:12px}
+.grid.list-view{grid-template-columns:1fr}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s;animation:rise .35s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card:hover{transform:translateY(-5px)}
+.card.owned{outline:2px solid var(--green);outline-offset:-1px;background:var(--surface2)}
+.card-img{height:175px;background:#09091a;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:contain;padding:8px;transition:transform .35s}
+.card:hover .card-img img{transform:scale(1.1)}
+.placeholder{width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;display:none}
+.ph-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;opacity:.9}
+.ph-name{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-align:center;opacity:.4;line-height:1.3}
+.wave-badge{position:absolute;top:8px;left:8px;font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:#000;z-index:2;white-space:nowrap}
+.owned-btn{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:rgba(255,255,255,.3);transition:all .15s;user-select:none;z-index:2;backdrop-filter:blur(4px)}
+.owned-btn:hover{border-color:var(--green);color:var(--green)}
+.owned-btn.owned{background:var(--green);border-color:var(--green);color:#000}
+.card-body{padding:10px 12px 13px}
+.card-num{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;color:var(--muted);margin-bottom:3px;text-transform:uppercase}
+.card-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:6px;letter-spacing:.3px}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.size-tag{font-size:8px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.excl-tag{font-size:9px;color:var(--muted2)}
+.excl-tag::before{content:'★ ';color:var(--yellow);font-size:8px}
+.grid.list-view .card{display:flex;flex-direction:row;align-items:center}
+.grid.list-view .card-img{width:80px;height:80px;flex-shrink:0;border-radius:0}
+.grid.list-view .card-img img{padding:4px}
+.grid.list-view .card-body{flex:1;padding:10px 14px;display:flex;align-items:center;gap:16px}
+.grid.list-view .card-name{margin-bottom:0;font-size:15px}
+.grid.list-view .wave-badge{top:6px;left:6px;font-size:7px;padding:2px 6px}
+.grid.list-view .owned-btn{top:6px;right:6px}
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted)}
+.empty-icon{font-size:3rem;margin-bottom:16px;opacity:.4}
+.empty p{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:1px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:99px}
+@media(max-width:480px){:root{--card-w:140px}h1{font-size:3.5rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hero-grid"></div>
+  <div class="eyebrow">Funko Pop! · Games</div>
+  <h1>OVERWATCH</h1>
+  <p class="subtitle">Complete collection checklist — <strong id="totalCount">…</strong> figures &amp; variants</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-val" id="statOwned">0</div><div class="stat-lbl">Owned</div></div>
+    <div class="stat"><div class="stat-val" id="statTotal">0</div><div class="stat-lbl">Total</div></div>
+    <div class="stat"><div class="stat-val" id="statPct">0%</div><div class="stat-lbl">Complete</div></div>
+    <div class="stat"><div class="stat-val">8</div><div class="stat-lbl">Waves</div></div>
+  </div>
+</header>
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Search by name, number, wave…" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Wave</span>
+    <div id="filters"></div>
+  </div>
+  <div class="toolbar">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div class="owned-pill" id="ownedCount">✓ 0 owned</div>
+      <div class="count-pill" id="countPill">Showing 0 items</div>
+    </div>
+    <div class="view-toggle">
+      <button class="view-btn active" id="gridViewBtn" title="Grid view" onclick="setView('grid')">⊞</button>
+      <button class="view-btn" id="listViewBtn" title="List view" onclick="setView('list')">☰</button>
+    </div>
+  </div>
+</div>
+<div id="output"></div>
+<script>
+const pops=[
+  {num:"92",  name:"Tracer",                         wave:"Wave 1", size:'3.75"',excl:null,           col:"#f97316",img:"imgs/92-tracer.jpg"},
+  {num:"92",  name:"Tracer (Sporty)",                wave:"Wave 1", size:'3.75"',excl:"Loot Crate",   col:"#fb923c",img:"imgs/92-tracer-sporty.jpg"},
+  {num:"92",  name:"Tracer (Gold/Posh)",             wave:"Wave 1", size:'3.75"',excl:"ThinkGeek",    col:"#ca8a04",img:"imgs/92-tracer-gold-posh.jpg"},
+  {num:"93",  name:"Reaper",                         wave:"Wave 1", size:'3.75"',excl:null,           col:"#374151",img:"imgs/93-reaper.jpg"},
+  {num:"93",  name:"Reaper (Shadow Step)",           wave:"Wave 1", size:'3.75"',excl:"BoxLunch",     col:"#1f2937",img:"imgs/93-reaper-shadow-step.jpg"},
+  {num:"93",  name:"Reaper (White Wight)",           wave:"Wave 1", size:'3.75"',excl:"Blizzard",     col:"#94a3b8",img:"imgs/93-reaper-white-wight.jpg"},
+  {num:"94",  name:"Widowmaker",                     wave:"Wave 1", size:'3.75"',excl:null,           col:"#7c3aed",img:"imgs/94-widowmaker.jpg"},
+  {num:"94",  name:"Widowmaker (Patina)",            wave:"Wave 1", size:'3.75"',excl:"Blizzard",     col:"#5b21b6",img:"imgs/94-widowmaker-patina.jpg"},
+  {num:"94",  name:"Widowmaker (Winter Wonderland)", wave:"Wave 1", size:'3.75"',excl:"Loot Crate",   col:"#a5b4fc",img:"imgs/94-widowmaker-winter-wonderland.jpg"},
+  {num:"95",  name:"Pharah",                         wave:"Wave 1", size:'3.75"',excl:"Blizzard",     col:"#2563eb",img:"imgs/95-pharah.jpg"},
+  {num:"95",  name:"Pharah (Titanium)",              wave:"Wave 1", size:'3.75"',excl:"Blizzard",     col:"#94a3b8",img:"imgs/95-pharah-titanium.webp"},
+  {num:"95",  name:"Pharah (Emerald)",               wave:"Wave 1", size:'3.75"',excl:"ECCC 2017",    col:"#16a34a",img:"imgs/95-pharah-emerald.jpg"},
+  {num:"96",  name:"Soldier: 76",                    wave:"Wave 1", size:'3.75"',excl:"GameStop",     col:"#475569",img:"imgs/96-soldier-76.jpg"},
+  {num:"96",  name:"Soldier: 76 (Gold)",             wave:"Wave 1", size:'3.75"',excl:"Blizzard",     col:"#ca8a04",img:"imgs/96-soldier-76-gold.jpg"},
+  {num:"97",  name:"Winston",                        wave:"Wave 1", size:'6"',   excl:null,           col:"#64748b",img:"imgs/97-winston.jpg"},
+  {num:"177", name:"D.Va with Meka",                 wave:"Wave 2", size:'6"',   excl:null,           col:"#ec4899",img:"imgs/177-d-va-with-meka.jpg"},
+  {num:"177", name:"D.Va with Meka (Carbon Fiber)",  wave:"Wave 2", size:'6"',   excl:"Blizzard",     col:"#be185d",img:"imgs/177-d-va-with-meka-carbon-fiber.jpg"},
+  {num:"177", name:"D.Va with Meka (Blueberry)",     wave:"Wave 2", size:'6"',   excl:"Walmart",      col:"#3b82f6",img:"imgs/177-d-va-with-meka-blueberry.jpg"},
+  {num:"177", name:"D.Va with Meka (30th Anniv.)",   wave:"Wave 2", size:'6"',   excl:"Blizzard",     col:"#f472b6",img:"imgs/177-d-va-with-meka-30th-anniv.jpg"},
+  {num:"178", name:"Reinhardt",                      wave:"Wave 2", size:'6"',   excl:null,           col:"#78716c",img:"imgs/178-reinhardt.jpg"},
+  {num:"179", name:"Lucio",                          wave:"Wave 2", size:'3.75"',excl:null,           col:"#22c55e",img:"imgs/179-lucio.jpg"},
+  {num:"180", name:"Mei",                            wave:"Wave 2", size:'3.75"',excl:null,           col:"#38bdf8",img:"imgs/180-mei.jpg"},
+  {num:"181", name:"Symmetra",                       wave:"Wave 2", size:'3.75"',excl:null,           col:"#818cf8",img:"imgs/181-symmetra.jpg"},
+  {num:"182", name:"McCree",                         wave:"Wave 2", size:'3.75"',excl:null,           col:"#b45309",img:"imgs/182-mccree.jpg"},
+  {num:"182", name:"McCree (USA)",                   wave:"Wave 2", size:'3.75"',excl:"GameStop",     col:"#dc2626",img:"imgs/182-mccree-usa.jpg"},
+  {num:"183", name:"Mei (Mid-Blizzard)",             wave:"Wave 2", size:'3.75"',excl:"Hot Topic",    col:"#7dd3fc",img:"imgs/183-mei-mid-blizzard.jpg"},
+  {num:"184", name:"Reinhardt (Unmasked)",           wave:"Wave 2", size:'6"',   excl:"Best Buy",     col:"#a8a29e",img:"imgs/184-reinhardt-unmasked.jpg"},
+  {num:"304", name:"Mercy",                          wave:"Wave 3", size:'3.75"',excl:null,           col:"#fde047",img:"imgs/304-mercy.jpg"},
+  {num:"304", name:"Mercy (Cobalt)",                 wave:"Wave 3", size:'3.75"',excl:"GameStop",     col:"#1d4ed8",img:"imgs/304-mercy-cobalt.jpg"},
+  {num:"304", name:"Mercy (Diamond Glitter)",        wave:"Wave 3", size:'3.75"',excl:"Blizzard",     col:"#a5f3fc",img:"imgs/304-mercy-diamond-glitter.jpg"},
+  {num:"305", name:"Zenyatta",                       wave:"Wave 3", size:'3.75"',excl:null,           col:"#fbbf24",img:"imgs/305-zenyatta.jpg"},
+  {num:"306", name:"Zarya",                          wave:"Wave 3", size:'3.75"',excl:null,           col:"#f472b6",img:"imgs/306-zarya.jpg"},
+  {num:"307", name:"Sombra",                         wave:"Wave 3", size:'3.75"',excl:null,           col:"#a855f7",img:"imgs/307-sombra.jpg"},
+  {num:"307", name:"Sombra (Glitch Skin)",           wave:"Wave 3", size:'3.75"',excl:"ECCC/Amazon",  col:"#7e22ce",img:"imgs/307-sombra-glitch-skin.jpg"},
+  {num:"307", name:"Sombra (Translucent)",           wave:"Wave 3", size:'3.75"',excl:"Hot Topic",    col:"#c4b5fd",img:"imgs/307-sombra-translucent.jpg"},
+  {num:"308", name:"Junkrat",                        wave:"Wave 3", size:'3.75"',excl:null,           col:"#f59e0b",img:"imgs/308-junkrat.jpg"},
+  {num:"309", name:"Roadhog",                        wave:"Wave 3", size:'6"',   excl:null,           col:"#92400e",img:"imgs/309-roadhog.jpg"},
+  {num:"346", name:"Soldier: 76 (Grillmaster)",      wave:"Wave 4", size:'3.75"',excl:"SDCC/GS",      col:"#f97316",img:"imgs/346-soldier--76-grillmaster-.jpg"},
+  {num:"347", name:"Genji",                          wave:"Wave 4", size:'3.75"',excl:null,           col:"#22c55e",img:"imgs/347-genji.jpg"},
+  {num:"347", name:"Genji (Carbon Fiber)",           wave:"Wave 4", size:'3.75"',excl:"Target",       col:"#15803d",img:"imgs/347-genji-carbon-fiber.jpg"},
+  {num:"348", name:"Hanzo",                          wave:"Wave 4", size:'3.75"',excl:null,           col:"#1e3a5f",img:"imgs/348-hanzo.jpg"},
+  {num:"349", name:"Ana",                            wave:"Wave 4", size:'3.75"',excl:null,           col:"#0369a1",img:"imgs/349-ana.jpg"},
+  {num:"350", name:"Torbjörn",                       wave:"Wave 4", size:'3.75"',excl:null,           col:"#dc2626",img:"imgs/350-torbjorn.jpg"},
+  {num:"350", name:"Torbjörn (Molten Core)",         wave:"Wave 4", size:'3.75"',excl:"Best Buy",     col:"#ea580c",img:"imgs/350-torbjorn-molten-core.jpg"},
+  {num:"351", name:"Doomfist",                       wave:"Wave 4", size:'3.75"',excl:null,           col:"#92400e",img:"imgs/351-doomfist.jpg"},
+  {num:"351", name:"Doomfist (Leopard Skin)",        wave:"Wave 4", size:'3.75"',excl:"Target",       col:"#78350f",img:"imgs/351-doomfist-leopard-skin.jpg"},
+  {num:"352", name:"Moira",                          wave:"Wave 4", size:'3.75"',excl:null,           col:"#9333ea",img:"imgs/352-moira.webp"},
+  {num:"352", name:"Orisa",                          wave:"Wave 4", size:'6"',   excl:null,           col:"#16a34a",img:"imgs/352-orisa.webp"},
+  {num:"359", name:"Ana (Shrike Skin)",              wave:"Wave 4", size:'3.75"',excl:"Amazon",       col:"#0c4a6e",img:"imgs/359-ana-shrike-skin.webp"},
+  {num:"360", name:"Orisa (OR15 Skin)",              wave:"Wave 4", size:'6"',   excl:"GameStop",     col:"#166534",img:"imgs/360-orisa-or15-skin.webp"},
+  {num:"382", name:"Roadhog (Junkenstein)",          wave:"Wave 5", size:'3.75"',excl:"Hot Topic",    col:"#78350f",img:"imgs/382-roadhog-junkenstein-.jpg"},
+  {num:"383", name:"Junkrat (Dr. Junkenstein)",      wave:"Wave 5", size:'3.75"',excl:"BoxLunch",     col:"#f59e0b",img:"imgs/383-junkrat-dr-junkenstein.webp"},
+  {num:"400", name:"Reinhardt (Coldhardt Skin)",     wave:"Wave 5", size:'6"',   excl:"NYCC/GS",      col:"#60a5fa",img:"imgs/400-reinhardt-coldhardt-skin.jpg"},
+  {num:"411", name:"Mercy (Witch)",                  wave:"Wave 5", size:'3.75"',excl:"Blizzard",     col:"#6d28d9",img:"imgs/411-mercy-witch.jpg"},
+  {num:"423", name:"Zenyatta (Cultist)",             wave:"Wave 5", size:'3.75"',excl:"Blizzard",     col:"#fbbf24",img:"imgs/423-zenyatta-cultist.jpg"},
+  {num:"424", name:"Tracer (Elf)",                   wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#22c55e",img:"imgs/424-tracer-elf.jpg"},
+  {num:"425", name:"Mei (Santa)",                    wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#dc2626",img:"imgs/425-mei-santa.jpg"},
+  {num:"440", name:"Ashe",                           wave:"Wave 5", size:'3.75"',excl:"BlizzCon",     col:"#f1f5f9",img:"imgs/440-ashe.jpg"},
+  {num:"441", name:"Ashe (Winter Skin)",             wave:"Wave 5", size:'3.75"',excl:"Funko Shop",   col:"#bfdbfe",img:"imgs/441-ashe-winter-skin.jpg"},
+  {num:"488", name:"Wrecking Ball",                  wave:"Wave 5", size:'6"',   excl:null,           col:"#d97706",img:"imgs/488-wrecking-ball.jpg"},
+  {num:"488", name:"Wrecking Ball (Biohazard)",      wave:"Wave 5", size:'6"',   excl:"NYCC/Amazon",  col:"#65a30d",img:"imgs/488-wrecking-ball-biohazard.jpg"},
+  {num:"489", name:"Bastion",                        wave:"Wave 5", size:'6"',   excl:null,           col:"#4b5563",img:"imgs/489-bastion.jpg"},
+  {num:"489", name:"Bastion (Metallic)",             wave:"Wave 5", size:'6"',   excl:"Blizzard",     col:"#9ca3af",img:"imgs/489-bastion-metallic.jpg"},
+  {num:"490", name:"Moira (Stone Skin)",             wave:"Wave 5", size:'3.75"',excl:null,           col:"#7e22ce",img:"imgs/490-moira-stone-skin.jpg"},
+  {num:"491", name:"D.Va",                           wave:"Wave 5", size:'3.75"',excl:null,           col:"#ec4899",img:"imgs/491-d-va.jpg"},
+  {num:"491", name:"D.Va (Diamond Glitter)",         wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#f9a8d4",img:"imgs/491-d-va-diamond-glitter.jpg"},
+  {num:"492", name:"D.Va (Nano Cola)",               wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#be185d",img:"imgs/492-d-va-nano-cola.jpg"},
+  {num:"493", name:"Reaper Wraith",                  wave:"Wave 5", size:'3.75"',excl:null,           col:"#374151",img:"imgs/493-reaper-wraith.jpg"},
+  {num:"494", name:"Pharah (Victory Pose)",          wave:"Wave 5", size:'3.75"',excl:null,           col:"#2563eb",img:"imgs/494-pharah-victory-pose.jpg"},
+  {num:"495", name:"Tracer (Punk Skin)",             wave:"Wave 5", size:'3.75"',excl:"Hot Topic",    col:"#f43f5e",img:"imgs/495-tracer-punk-skin.jpg"},
+  {num:"496", name:"Brigitte",                       wave:"Wave 5", size:'3.75"',excl:null,           col:"#dc2626",img:"imgs/496-brigitte.jpg"},
+  {num:"497", name:"Pharah (Anubis Skin)",           wave:"Wave 5", size:'3.75"',excl:"Amazon",       col:"#d97706",img:"imgs/497-pharah-anubis-skin.jpg"},
+  {num:"498", name:"Reaper Wraith (Diablo Skin)",    wave:"Wave 5", size:'3.75"',excl:"Walmart",      col:"#7f1d1d",img:"imgs/498-reaper-wraith-diablo-skin.jpg"},
+  {num:"516", name:"McCree (Summer Skin)",           wave:"Wave 5", size:'3.75"',excl:"SDCC/GS",      col:"#0369a1",img:"imgs/516-mccree-summer-skin.jpg"},
+  {num:"519", name:"Genji (Sentai Skin)",            wave:"Wave 5", size:'3.75"',excl:"Blizzard",     col:"#16a34a",img:"imgs/519-genji-sentai-skin.jpg"},
+  {num:"520", name:"Reaper (Pumpkin Glow)",          wave:"Wave 5", size:'3.75"',excl:"Blizzard",     col:"#ea580c",img:"imgs/520-reaper-pumpkin-glow.jpg"},
+  {num:"549", name:"Lucio (Amphibeat Skin)",         wave:"Wave 6", size:'3.75"',excl:"Blizzard",     col:"#15803d",img:"imgs/549-lucio-amphibeat-skin.jpg"},
+  {num:"550", name:"Tracer (BlizzCon 2019)",         wave:"Wave 6", size:'3.75"',excl:"BlizzCon",     col:"#f97316",img:"imgs/550-tracer-blizzcon-2019.jpg"},
+  {num:"551", name:"Genji (BlizzCon 2019)",          wave:"Wave 6", size:'3.75"',excl:"BlizzCon",     col:"#22c55e",img:"imgs/551-genji-blizzcon-2019.jpg"},
+  {num:"558", name:"B.O.B.",                         wave:"Wave 6", size:'6"',   excl:null,           col:"#1e293b",img:"imgs/558-b-o-b.jpg"},
+  {num:"558", name:"B.O.B. (Gold Metallic)",         wave:"Wave 6", size:'6"',   excl:"Walmart",      col:"#ca8a04",img:"imgs/558-b-o-b-gold-metallic.jpg"},
+  {num:"559", name:"Baptiste",                       wave:"Wave 6", size:'3.75"',excl:null,           col:"#0891b2",img:"imgs/559-baptiste.jpg"},
+  {num:"565", name:"Tracer (Overwatch League)",      wave:"Wave 6", size:'3.75"',excl:"Fanatics",     col:"#f59e0b",img:"imgs/565-tracer-overwatch-league.jpg"},
+  {num:"625", name:"Sombra (Los Muertos Glow)",      wave:"Wave 6", size:'3.75"',excl:"GameStop",     col:"#7e22ce",img:"imgs/625-sombra-los-muertos-glow.jpg"},
+  {num:"902", name:"Reaper (OW2)",                   wave:"OW2",    size:'3.75"',excl:null,           col:"#1e1e2e",img:"imgs/902-reaper-ow2.jpg"},
+  {num:"903", name:"Echo",                           wave:"OW2",    size:'3.75"',excl:null,           col:"#7dd3fc",img:"imgs/903-echo.jpg"},
+  {num:"904", name:"Cassidy",                        wave:"OW2",    size:'3.75"',excl:null,           col:"#b45309",img:"imgs/904-cassidy.jpg"},
+  {num:"906", name:"Echo (Glow In The Dark)",        wave:"OW2",    size:'10"',  excl:"Walmart",      col:"#38bdf8",img:"imgs/906-echo-glow-in-the-dark.jpg"},
+  {num:"913", name:"Echo (Hot Rod)",                 wave:"OW2",    size:'3.75"',excl:"Funko Shop",   col:"#dc2626",img:"imgs/913-echo-hot-rod.jpg"},
+  {num:"931", name:"Winston (OW2)",                  wave:"OW2",    size:'6"',   excl:null,           col:"#64748b",img:"imgs/931-winston-ow2.jpg"},
+  {num:"932", name:"Sigma",                          wave:"OW2",    size:'3.75"',excl:null,           col:"#475569",img:"imgs/932-sigma.jpg"},
+  {num:"933", name:"Lucio (OW2)",                    wave:"OW2",    size:'3.75"',excl:null,           col:"#22c55e",img:"imgs/933-lucio-ow2.jpg"},
+  {num:"934", name:"Junker Queen",                   wave:"OW2",    size:'3.75"',excl:null,           col:"#dc2626",img:"imgs/934-junker-queen.jpg"},
+  {num:"935", name:"Kiriko",                         wave:"OW2",    size:'3.75"',excl:null,           col:"#f43f5e",img:"imgs/935-kiriko.jpg"},
+];
+const packs=[
+  {name:"Roadhog & Junkrat",                        wave:"2-Pack", excl:"SDCC 2018 / Blizzard", col:"#f59e0b",img:"imgs/pack-roadhog-junkrat.webp"},
+  {name:"Hanzo & Genji",                            wave:"2-Pack", excl:"E3 Expo 2019",         col:"#22c55e",img:"imgs/pack-hanzo-genji.jpg"},
+  {name:"Reinhardt & Brigitte",                     wave:"2-Pack", excl:"Blizzard",             col:"#78716c",img:"imgs/pack-reinhardt-brigitte.jpg"},
+  {name:"Sombra / Zarya / Junkrat / Mercy (Glow)",  wave:"4-Pack", excl:"Exclusive",            col:"#a855f7",img:"imgs/pack-sombra-zarya-junkrat-mercy-glow-.jpg"},
+];
+const waveColors={"Wave 1":"#f97316","Wave 2":"#eab308","Wave 3":"#22c55e","Wave 4":"#3b82f6","Wave 5":"#a855f7","Wave 6":"#ec4899","OW2":"#06b6d4","2-Pack":"#fbbf24","4-Pack":"#f472b6"};
+const waveFilters=["All","Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","OW2","Packs"];
+let activeWave="All",viewMode="grid";
+const owned=new Set(JSON.parse(localStorage.getItem("ow_owned")||"[]"));
+const allItems=[...pops,...packs];
+
+function sizeStyle(s){if(s==='6"')return{bg:"#f59e0b",fg:"#000"};if(s==='10"')return{bg:"#f43f5e",fg:"#fff"};return{bg:"rgba(255,255,255,0.08)",fg:"#8892a4"}}
+function itemKey(d){return(d.num||"pack")+"|"+d.name}
+
+function makeCard(data,delay){
+  const wc=waveColors[data.wave]||"#f97316",key=itemKey(data),isOwned=owned.has(key);
+  const card=document.createElement("div");
+  card.className="card"+(isOwned?" owned":"");
+  card.style.animationDelay=delay+"s";
+  const imgArea=document.createElement("div");imgArea.className="card-img";
+  const img=document.createElement("img");img.alt=data.name;img.loading="lazy";img.src=data.img;
+  const ph=document.createElement("div");ph.className="placeholder";ph.style.cssText="display:none;background:"+wc+"10";
+  const short=data.name.replace(/\s*\(.*?\)/g,"").trim();
+  ph.innerHTML=`<div class="ph-num" style="color:${wc}">${data.num||"•"}</div><div class="ph-name" style="color:${wc}">${short.toUpperCase()}</div>`;
+  img.onerror=()=>{img.style.display="none";ph.style.display="flex"};
+  imgArea.appendChild(ph);imgArea.appendChild(img);
+  const badge=document.createElement("div");badge.className="wave-badge";badge.style.background=wc;badge.textContent=data.wave;imgArea.appendChild(badge);
+  const ownBtn=document.createElement("div");ownBtn.className="owned-btn"+(isOwned?" owned":"");ownBtn.textContent="✓";
+  ownBtn.addEventListener("click",e=>{
+    e.stopPropagation();
+    if(owned.has(key)){owned.delete(key);ownBtn.classList.remove("owned");card.classList.remove("owned");}
+    else{owned.add(key);ownBtn.classList.add("owned");card.classList.add("owned");}
+    localStorage.setItem("ow_owned",JSON.stringify([...owned]));updateStats();
+  });
+  imgArea.appendChild(ownBtn);card.appendChild(imgArea);
+  const ss=sizeStyle(data.size);
+  const body=document.createElement("div");body.className="card-body";
+  body.innerHTML=`${data.num?`<div class="card-num">#${data.num}</div>`:""}<div class="card-name">${data.name}</div><div class="card-tags">${data.size?`<span class="size-tag" style="background:${ss.bg};color:${ss.fg}">${data.size}</span>`:""} ${data.excl?`<span class="excl-tag">${data.excl}</span>`:""}</div>`;
+  card.appendChild(body);
+  card.addEventListener("mouseenter",()=>{card.style.borderColor=wc+"60";card.style.boxShadow=`0 16px 40px ${wc}20`});
+  card.addEventListener("mouseleave",()=>{card.style.borderColor="";card.style.boxShadow=""});
+  return card;
+}
+
+function render(){
+  const q=document.getElementById("search").value.toLowerCase().trim();
+  const out=document.getElementById("output");out.innerHTML="";
+  const showPacks=activeWave==="All"||activeWave==="Packs";
+  const showSingles=activeWave!=="Packs";
+  let total=0;
+  if(showSingles){
+    const f=pops.filter(p=>(activeWave==="All"||p.wave===activeWave)&&(!q||p.name.toLowerCase().includes(q)||p.num.includes(q)||p.wave.toLowerCase().includes(q)));
+    total+=f.length;
+    if(f.length){const g=document.createElement("div");g.className="grid"+(viewMode==="list"?" list-view":"");f.forEach((p,i)=>g.appendChild(makeCard(p,Math.min(i*.015,.3))));out.appendChild(g);}
+  }
+  if(showPacks){
+    const f=packs.filter(p=>!q||p.name.toLowerCase().includes(q)||p.wave.toLowerCase().includes(q));
+    total+=f.length;
+    if(f.length){
+      const lbl=document.createElement("div");lbl.className="section-label";lbl.innerHTML="<span>MULTI-PACKS</span>";out.appendChild(lbl);
+      const g=document.createElement("div");g.className="grid"+(viewMode==="list"?" list-view":"");f.forEach((p,i)=>g.appendChild(makeCard(p,Math.min(i*.05,.2))));out.appendChild(g);
+    }
+  }
+  if(!total){const g=document.createElement("div");g.className="grid";g.innerHTML=`<div class="empty"><div class="empty-icon">⊘</div><p>No figures match "${q}"</p></div>`;out.appendChild(g);}
+  document.getElementById("countPill").textContent=`Showing ${total} item${total!==1?"s":""}`;
+  updateStats();
+}
+
+function updateStats(){
+  const t=allItems.length,n=owned.size,pct=t>0?Math.round(n/t*100):0;
+  document.getElementById("statOwned").textContent=n;
+  document.getElementById("statTotal").textContent=t;
+  document.getElementById("statPct").textContent=pct+"%";
+  document.getElementById("totalCount").textContent=t;
+  document.getElementById("ownedCount").textContent=`✓ ${n} owned`;
+}
+
+function setView(mode){
+  viewMode=mode;
+  document.getElementById("gridViewBtn").classList.toggle("active",mode==="grid");
+  document.getElementById("listViewBtn").classList.toggle("active",mode==="list");
+  render();
+}
+
+const filtersEl=document.getElementById("filters");
+waveFilters.forEach(w=>{
+  const btn=document.createElement("button");
+  btn.className="filter-btn"+(w==="All"?" active":"");
+  btn.textContent=w;
+  const wc=w==="All"?"#f97316":w==="Packs"?"#fbbf24":(waveColors[w]||"#f97316");
+  if(w==="All")btn.style.cssText=`background:${wc};color:#000;border-color:${wc}`;
+  btn.addEventListener("click",()=>{
+    activeWave=w;
+    document.querySelectorAll(".filter-btn").forEach(b=>{b.classList.remove("active");b.style.cssText=""});
+    btn.classList.add("active");btn.style.cssText=`background:${wc};color:#000;border-color:${wc}`;
+    render();
+  });
+  filtersEl.appendChild(btn);
+});
+
+updateStats();render();
+document.getElementById("search").addEventListener("input",render);
+</script>
+</body>
+</html>
