@@ -184,6 +184,7 @@ const pops=[
   {num:"491", name:"D.Va",                           wave:"Wave 5", size:'3.75"',excl:null,           col:"#ec4899",img:"imgs/491-d-va.jpg"},
   {num:"491", name:"D.Va (Diamond Glitter)",         wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#f9a8d4",img:"imgs/491-d-va-diamond-glitter.jpg"},
   {num:"492", name:"D.Va (Nano Cola)",               wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#be185d",img:"imgs/492-d-va-nano-cola.jpg"},
+  {num:"491", name:"D.Va (Metallic)",                wave:"Wave 5", size:'3.75"',excl:"Funko Shop",   col:"#f9a8d4",img:"imgs/491-d-va.jpg"},
   {num:"493", name:"Reaper Wraith",                  wave:"Wave 5", size:'3.75"',excl:null,           col:"#374151",img:"imgs/493-reaper-wraith.jpg"},
   {num:"494", name:"Pharah (Victory Pose)",          wave:"Wave 5", size:'3.75"',excl:null,           col:"#2563eb",img:"imgs/494-pharah-victory-pose.jpg"},
   {num:"495", name:"Tracer (Punk Skin)",             wave:"Wave 5", size:'3.75"',excl:"Hot Topic",    col:"#f43f5e",img:"imgs/495-tracer-punk-skin.jpg"},
@@ -195,6 +196,7 @@ const pops=[
   {num:"520", name:"Reaper (Pumpkin Glow)",          wave:"Wave 5", size:'3.75"',excl:"Blizzard",     col:"#ea580c",img:"imgs/520-reaper-pumpkin-glow.jpg"},
   {num:"549", name:"Lucio (Amphibeat Skin)",         wave:"Wave 6", size:'3.75"',excl:"Blizzard",     col:"#15803d",img:"imgs/549-lucio-amphibeat-skin.jpg"},
   {num:"550", name:"Tracer (BlizzCon 2019)",         wave:"Wave 6", size:'3.75"',excl:"BlizzCon",     col:"#f97316",img:"imgs/550-tracer-blizzcon-2019.jpg"},
+  {num:"550", name:"Tracer (Standard)",              wave:"Wave 6", size:'3.75"',excl:null,           col:"#f97316",img:"imgs/550-tracer-blizzcon-2019.jpg"},
   {num:"551", name:"Genji (BlizzCon 2019)",          wave:"Wave 6", size:'3.75"',excl:"BlizzCon",     col:"#22c55e",img:"imgs/551-genji-blizzcon-2019.jpg"},
   {num:"558", name:"B.O.B.",                         wave:"Wave 6", size:'6"',   excl:null,           col:"#1e293b",img:"imgs/558-b-o-b.jpg"},
   {num:"558", name:"B.O.B. (Gold Metallic)",         wave:"Wave 6", size:'6"',   excl:"Walmart",      col:"#ca8a04",img:"imgs/558-b-o-b-gold-metallic.jpg"},
@@ -218,11 +220,44 @@ const packs=[
   {name:"Reinhardt & Brigitte",                     wave:"2-Pack", excl:"Blizzard",             col:"#78716c",img:"imgs/pack-reinhardt-brigitte.jpg"},
   {name:"Sombra / Zarya / Junkrat / Mercy (Glow)",  wave:"4-Pack", excl:"Exclusive",            col:"#a855f7",img:"imgs/pack-sombra-zarya-junkrat-mercy-glow-.jpg"},
 ];
-const waveColors={"Wave 1":"#f97316","Wave 2":"#eab308","Wave 3":"#22c55e","Wave 4":"#3b82f6","Wave 5":"#a855f7","Wave 6":"#ec4899","OW2":"#06b6d4","2-Pack":"#fbbf24","4-Pack":"#f472b6"};
-const waveFilters=["All","Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","OW2","Packs"];
+// Keychains — Pocket Pop! 1.5" with keyring
+// Images: 3 with real keychain photos; rest use corresponding Pop! image as visual reference
+const keychains=[
+  // S1 (~2016-2017)
+  {name:"Tracer",                 wave:"KC-S1", excl:null,          col:"#f97316",img:"imgs/kc-tracer.jpg"},
+  {name:"Reaper",                 wave:"KC-S1", excl:null,          col:"#374151",img:"imgs/kc-reaper.jpg"},
+  {name:"Widowmaker",             wave:"KC-S1", excl:null,          col:"#7c3aed",img:"imgs/94-widowmaker.jpg"},
+  {name:"Mei",                    wave:"KC-S1", excl:null,          col:"#38bdf8",img:"imgs/180-mei.jpg"},
+  {name:"Symmetra",               wave:"KC-S1", excl:null,          col:"#818cf8",img:"imgs/181-symmetra.jpg"},
+  {name:"Lucio",                  wave:"KC-S1", excl:null,          col:"#22c55e",img:"imgs/179-lucio.jpg"},
+  // S2 (~2018)
+  {name:"Mercy",                  wave:"KC-S2", excl:null,          col:"#fde047",img:"imgs/304-mercy.jpg"},
+  {name:"Soldier: 76",            wave:"KC-S2", excl:null,          col:"#475569",img:"imgs/96-soldier-76.jpg"},
+  {name:"Winston",                wave:"KC-S2", excl:null,          col:"#64748b",img:"imgs/97-winston.jpg"},
+  {name:"Pharah",                 wave:"KC-S2", excl:null,          col:"#2563eb",img:"imgs/95-pharah.jpg"},
+  {name:"D.Va",                   wave:"KC-S2", excl:null,          col:"#ec4899",img:"imgs/kc-dva.jpg"},
+  {name:"Sombra",                 wave:"KC-S2", excl:null,          col:"#a855f7",img:"imgs/307-sombra.jpg"},
+  {name:"Orisa",                  wave:"KC-S2", excl:null,          col:"#16a34a",img:"imgs/352-orisa.webp"},
+  {name:"Doomfist",               wave:"KC-S2", excl:null,          col:"#92400e",img:"imgs/351-doomfist.jpg"},
+  {name:"McCree",                 wave:"KC-S2", excl:null,          col:"#b45309",img:"imgs/182-mccree.jpg"},
+  {name:"Genji",                  wave:"KC-S2", excl:null,          col:"#22c55e",img:"imgs/347-genji.jpg"},
+  {name:"Hanzo",                  wave:"KC-S2", excl:null,          col:"#1e3a5f",img:"imgs/348-hanzo.jpg"},
+  {name:"Zarya",                  wave:"KC-S2", excl:null,          col:"#f472b6",img:"imgs/306-zarya.jpg"},
+  {name:"Junkrat",                wave:"KC-S2", excl:null,          col:"#f59e0b",img:"imgs/308-junkrat.jpg"},
+  {name:"Reinhardt",              wave:"KC-S2", excl:null,          col:"#78716c",img:"imgs/178-reinhardt.jpg"},
+  {name:"Ana",                    wave:"KC-S2", excl:null,          col:"#0369a1",img:"imgs/349-ana.jpg"},
+  // Exclusivos
+  {name:"Snowball",               wave:"KC-Excl",excl:"GameStop",   col:"#38bdf8",img:"imgs/180-mei.jpg"},
+  {name:"Tracer (OW2)",           wave:"KC-Excl",excl:"Five Below", col:"#f97316",img:"imgs/550-tracer-blizzcon-2019.jpg"},
+  {name:"Mercy (OW2)",            wave:"KC-Excl",excl:"Five Below", col:"#fde047",img:"imgs/304-mercy.jpg"},
+  {name:"Cassidy",                wave:"KC-Excl",excl:null,         col:"#b45309",img:"imgs/904-cassidy.jpg"},
+];
+
+const waveColors={"Wave 1":"#f97316","Wave 2":"#eab308","Wave 3":"#22c55e","Wave 4":"#3b82f6","Wave 5":"#a855f7","Wave 6":"#ec4899","OW2":"#06b6d4","2-Pack":"#fbbf24","4-Pack":"#f472b6","KC-S1":"#06b6d4","KC-S2":"#0891b2","KC-Excl":"#8b5cf6"};
+const waveFilters=["All","Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","OW2","Packs","Keychains"];
 let activeWave="All",viewMode="grid";
 const owned=new Set(JSON.parse(localStorage.getItem("ow_owned")||"[]"));
-const allItems=[...pops,...packs];
+const allItems=[...pops,...packs,...keychains];
 
 function sizeStyle(s){if(s==='6"')return{bg:"#f59e0b",fg:"#000"};if(s==='10"')return{bg:"#f43f5e",fg:"#fff"};return{bg:"rgba(255,255,255,0.08)",fg:"#8892a4"}}
 function itemKey(d){return(d.num||"pack")+"|"+d.name}
@@ -249,8 +284,14 @@ function makeCard(data,delay){
   });
   imgArea.appendChild(ownBtn);card.appendChild(imgArea);
   const ss=sizeStyle(data.size);
+  const isKC=data.wave&&data.wave.startsWith("KC-");
   const body=document.createElement("div");body.className="card-body";
-  body.innerHTML=`${data.num?`<div class="card-num">#${data.num}</div>`:""}<div class="card-name">${data.name}</div><div class="card-tags">${data.size?`<span class="size-tag" style="background:${ss.bg};color:${ss.fg}">${data.size}</span>`:""} ${data.excl?`<span class="excl-tag">${data.excl}</span>`:""}</div>`;
+  body.innerHTML=`${data.num?`<div class="card-num">#${data.num}</div>`:(isKC?`<div class="card-num">KEYCHAIN</div>`:"")}
+  <div class="card-name">${data.name}</div>
+  <div class="card-tags">
+    ${isKC?`<span class="size-tag" style="background:#0891b2;color:#fff">1.5"</span>`:(data.size?`<span class="size-tag" style="background:${ss.bg};color:${ss.fg}">${data.size}</span>`:"")}
+    ${data.excl?`<span class="excl-tag">${data.excl}</span>`:""}
+  </div>`;
   card.appendChild(body);
   card.addEventListener("mouseenter",()=>{card.style.borderColor=wc+"60";card.style.boxShadow=`0 16px 40px ${wc}20`});
   card.addEventListener("mouseleave",()=>{card.style.borderColor="";card.style.boxShadow=""});
@@ -261,7 +302,8 @@ function render(){
   const q=document.getElementById("search").value.toLowerCase().trim();
   const out=document.getElementById("output");out.innerHTML="";
   const showPacks=activeWave==="All"||activeWave==="Packs";
-  const showSingles=activeWave!=="Packs";
+  const showSingles=activeWave!=="Packs"&&activeWave!=="Keychains";
+  const showKC=activeWave==="All"||activeWave==="Keychains";
   let total=0;
   if(showSingles){
     const f=pops.filter(p=>(activeWave==="All"||p.wave===activeWave)&&(!q||p.name.toLowerCase().includes(q)||p.num.includes(q)||p.wave.toLowerCase().includes(q)));
@@ -274,6 +316,14 @@ function render(){
     if(f.length){
       const lbl=document.createElement("div");lbl.className="section-label";lbl.innerHTML="<span>MULTI-PACKS</span>";out.appendChild(lbl);
       const g=document.createElement("div");g.className="grid"+(viewMode==="list"?" list-view":"");f.forEach((p,i)=>g.appendChild(makeCard(p,Math.min(i*.05,.2))));out.appendChild(g);
+    }
+  }
+  if(showKC){
+    const f=keychains.filter(p=>(activeWave==="All"||activeWave==="Keychains")&&(!q||p.name.toLowerCase().includes(q)||p.wave.toLowerCase().includes(q)));
+    total+=f.length;
+    if(f.length){
+      const lbl=document.createElement("div");lbl.className="section-label";lbl.innerHTML="<span>POCKET POP! KEYCHAINS · 1.5&quot;</span>";out.appendChild(lbl);
+      const g=document.createElement("div");g.className="grid"+(viewMode==="list"?" list-view":"");f.forEach((p,i)=>g.appendChild(makeCard(p,Math.min(i*.02,.3))));out.appendChild(g);
     }
   }
   if(!total){const g=document.createElement("div");g.className="grid";g.innerHTML=`<div class="empty"><div class="empty-icon">⊘</div><p>No figures match "${q}"</p></div>`;out.appendChild(g);}
@@ -302,7 +352,7 @@ waveFilters.forEach(w=>{
   const btn=document.createElement("button");
   btn.className="filter-btn"+(w==="All"?" active":"");
   btn.textContent=w;
-  const wc=w==="All"?"#f97316":w==="Packs"?"#fbbf24":(waveColors[w]||"#f97316");
+  const wc=w==="All"?"#f97316":w==="Packs"?"#fbbf24":w==="Keychains"?"#0891b2":(waveColors[w]||"#f97316");
   if(w==="All")btn.style.cssText=`background:${wc};color:#000;border-color:${wc}`;
   btn.addEventListener("click",()=>{
     activeWave=w;
