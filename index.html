@@ -455,6 +455,26 @@ input[type="text"]::placeholder { color: var(--ow-muted); }
 ::-webkit-scrollbar-thumb { background: var(--ow-border2); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ow-blue); }
 
+.io-btn {
+  background: rgba(4,17,31,0.8);
+  border: 1px solid var(--ow-border2);
+  border-radius: 3px;
+  color: var(--ow-blue);
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0 12px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.io-btn:hover { background: var(--ow-blue-dim); border-color: var(--ow-blue); color: var(--ow-white); }
+
 @media(max-width:480px){ :root{ --card-w:145px } h1{ font-size:3.8rem } }
 </style>
 </head>
@@ -501,9 +521,15 @@ input[type="text"]::placeholder { color: var(--ow-muted); }
       <div class="owned-pill" id="ownedCount">✓ 0 owned</div>
       <div class="count-pill" id="countPill">Showing 0 items</div>
     </div>
-    <div class="view-toggle">
-      <button class="view-btn active" id="gridViewBtn" title="Grid view" onclick="setView('grid')">⊞</button>
-      <button class="view-btn" id="listViewBtn" title="List view" onclick="setView('list')">☰</button>
+    <div style="display:flex;gap:6px;align-items:center">
+      <button class="io-btn" onclick="exportCollection()" title="Export collection to JSON file">↑ Export</button>
+      <label class="io-btn" title="Import collection from JSON file" style="cursor:pointer">
+        ↓ Import<input type="file" id="importFile" accept=".json" style="display:none" onchange="importCollection(event)">
+      </label>
+      <div class="view-toggle">
+        <button class="view-btn active" id="gridViewBtn" title="Grid view" onclick="setView('grid')">⊞</button>
+        <button class="view-btn" id="listViewBtn" title="List view" onclick="setView('list')">☰</button>
+      </div>
     </div>
   </div>
 </div>
@@ -749,6 +775,47 @@ waveFilters.forEach(w=>{
 
 updateStats();render();
 document.getElementById("search").addEventListener("input",render);
+
+// ═══════════════════════════════════════════════════════
+// EXPORT / IMPORT
+// ═══════════════════════════════════════════════════════
+function exportCollection(){
+  const data = {
+    version: 1,
+    exported: new Date().toISOString(),
+    owned: [...owned]
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href     = url;
+  a.download = "overwatch-funkos-collection.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importCollection(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = evt => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      const list = Array.isArray(data) ? data : (Array.isArray(data.owned) ? data.owned : null);
+      if(!list) throw new Error("Formato inválido");
+      owned.clear();
+      list.forEach(k => owned.add(k));
+      localStorage.setItem("ow_owned", JSON.stringify([...owned]));
+      render();
+      alert(`✓ Importado com sucesso — ${owned.size} figuras marcadas.`);
+    } catch(err) {
+      alert("Erro ao importar: ficheiro inválido.");
+    }
+    // reset so same file can be re-imported
+    e.target.value = "";
+  };
+  reader.readAsText(file);
+}
 </script>
 
 <!-- ── DISCLAIMER ── -->
