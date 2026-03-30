@@ -475,6 +475,36 @@ input[type="text"]::placeholder { color: var(--ow-muted); }
 }
 .io-btn:hover { background: var(--ow-blue-dim); border-color: var(--ow-blue); color: var(--ow-white); }
 
+/* ── LIMITED EDITION ── */
+.card.limited {
+  outline: 2px solid #ca8a04;
+  outline-offset: -1px;
+}
+.card.limited::before {
+  background: linear-gradient(90deg, transparent 0%, #fbbf24 50%, transparent 100%);
+  opacity: 1;
+}
+.le-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: rgba(4,14,28,0.85);
+  border: 1px solid #ca8a04;
+  color: #fbbf24;
+  padding: 3px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+}
+
 @media(max-width:480px){ :root{ --card-w:145px } h1{ font-size:3.8rem } }
 </style>
 </head>
@@ -603,7 +633,7 @@ const pops=[
   {num:"491", name:"D.Va",                           wave:"Wave 5", size:'3.75"',excl:null,           col:"#ec4899",img:"imgs/491-d-va.jpg"},
   {num:"491", name:"D.Va (Diamond Glitter)",         wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#f9a8d4",img:"imgs/491-d-va-diamond-glitter.jpg"},
   {num:"492", name:"D.Va (Nano Cola)",               wave:"Wave 5", size:'3.75"',excl:"GameStop",     col:"#be185d",img:"imgs/492-d-va-nano-cola.jpg"},
-  {num:"491", name:"D.Va (Metallic)",                wave:"Wave 5", size:'3.75"',excl:"Funko Shop",   col:"#f9a8d4",img:"imgs/491-d-va.jpg"},
+  {num:"491", name:"D.Va (Metallic)",                wave:"Wave 5", size:'3.75"',excl:"Funko Shop",   col:"#f9a8d4",img:"imgs/491-d-va.jpg", le:3000},
   {num:"493", name:"Reaper Wraith",                  wave:"Wave 5", size:'3.75"',excl:null,           col:"#374151",img:"imgs/493-reaper-wraith.jpg"},
   {num:"494", name:"Pharah (Victory Pose)",          wave:"Wave 5", size:'3.75"',excl:null,           col:"#2563eb",img:"imgs/494-pharah-victory-pose.jpg"},
   {num:"495", name:"Tracer (Punk Skin)",             wave:"Wave 5", size:'3.75"',excl:"Hot Topic",    col:"#f43f5e",img:"imgs/495-tracer-punk-skin.jpg"},
@@ -675,7 +705,7 @@ function itemKey(d){return(d.num||"pack")+"|"+d.name}
 function makeCard(data,delay){
   const wc=waveColors[data.wave]||"#f97316",key=itemKey(data),isOwned=owned.has(key);
   const card=document.createElement("div");
-  card.className="card"+(isOwned?" owned":"");
+  card.className="card"+(isOwned?" owned":"")+(data.le?" limited":"");
   card.style.animationDelay=delay+"s";
   const imgArea=document.createElement("div");imgArea.className="card-img";
   const img=document.createElement("img");img.alt=data.name;img.loading="lazy";img.src=data.img;
@@ -693,6 +723,12 @@ function makeCard(data,delay){
     localStorage.setItem("ow_owned",JSON.stringify([...owned]));updateStats();
   });
   imgArea.appendChild(ownBtn);card.appendChild(imgArea);
+  if(data.le){
+    const leBadge=document.createElement("div");
+    leBadge.className="le-badge";
+    leBadge.textContent=`◆ ${data.le.toLocaleString()} PCS`;
+    imgArea.appendChild(leBadge);
+  }
   const ss=sizeStyle(data.size);
   const isKC=data.wave&&data.wave.startsWith("KC-");
   const body=document.createElement("div");body.className="card-body";
