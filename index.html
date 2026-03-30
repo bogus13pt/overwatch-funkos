@@ -476,12 +476,19 @@ input[type="text"]::placeholder { color: var(--ow-muted); }
 .io-btn:hover { background: var(--ow-blue-dim); border-color: var(--ow-blue); color: var(--ow-white); }
 
 /* ── LIMITED EDITION ── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
 .card.limited {
   outline: 2px solid #ca8a04;
   outline-offset: -1px;
+  box-shadow: 0 0 18px rgba(202,138,4,0.25);
 }
 .card.limited::before {
   background: linear-gradient(90deg, transparent 0%, #fbbf24 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
   opacity: 1;
 }
 .le-badge {
@@ -490,19 +497,20 @@ input[type="text"]::placeholder { color: var(--ow-muted); }
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  background: rgba(4,14,28,0.85);
+  background: rgba(4,14,28,0.9);
   border: 1px solid #ca8a04;
   color: #fbbf24;
-  padding: 3px 10px;
+  padding: 3px 12px;
   border-radius: 2px;
   white-space: nowrap;
   z-index: 3;
   backdrop-filter: blur(4px);
-  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  text-shadow: 0 0 8px rgba(251,191,36,0.5);
 }
 
 @media(max-width:480px){ :root{ --card-w:145px } h1{ font-size:3.8rem } }
@@ -662,6 +670,10 @@ const pops=[
   {num:"933", name:"Lucio (OW2)",                    wave:"OW2",    size:'3.75"',excl:null,           col:"#22c55e",img:"imgs/933-lucio-ow2.jpg"},
   {num:"934", name:"Junker Queen",                   wave:"OW2",    size:'3.75"',excl:null,           col:"#dc2626",img:"imgs/934-junker-queen.jpg"},
   {num:"935", name:"Kiriko",                         wave:"OW2",    size:'3.75"',excl:null,           col:"#f43f5e",img:"imgs/935-kiriko.jpg"},
+  // ── Freddy Funko — Overwatch themed, LE numeradas ──
+  {num:"SE",  name:"Freddy as Reaper (Funtastic Voyage)",   wave:"Freddy", size:'3.75"',excl:"Funko Shop",   col:"#374151",img:"imgs/freddy-as-reaper-funtastic.jpg",  le:2000},
+  {num:"SE",  name:"Freddy as Nebula Reaper (SDCC Fundays)",wave:"Freddy", size:'3.75"',excl:"SDCC Fundays", col:"#7c3aed",img:"imgs/freddy-as-nebula-reaper-sdcc.jpg", le:1000},
+  {num:"SE",  name:"Freddy as Reaper (Box of Fun)",         wave:"Freddy", size:'3.75"',excl:"Box of Fun",   col:"#1e1e2e",img:"imgs/freddy-as-reaper-boxoffun.jpg",   le:2000},
 ];
 const packs=[
   {name:"Roadhog & Junkrat",                        wave:"2-Pack", excl:"SDCC 2018 / Blizzard", col:"#f59e0b",img:"imgs/pack-roadhog-junkrat.webp"},
@@ -693,8 +705,8 @@ const keychains=[
   {name:"Mercy (OW2)",     wave:"KC-Excl",excl:"Five Below", col:"#fde047",img:"imgs/kc-mercy-ow2.jpg"},
 ];
 
-const waveColors={"Wave 1":"#f97316","Wave 2":"#eab308","Wave 3":"#22c55e","Wave 4":"#3b82f6","Wave 5":"#a855f7","Wave 6":"#ec4899","OW2":"#06b6d4","2-Pack":"#fbbf24","4-Pack":"#f472b6","KC-S1":"#06b6d4","KC-S2":"#0891b2","KC-Excl":"#8b5cf6"};
-const waveFilters=["All","Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","OW2","Packs","Keychains"];
+const waveColors={"Wave 1":"#f97316","Wave 2":"#eab308","Wave 3":"#22c55e","Wave 4":"#3b82f6","Wave 5":"#a855f7","Wave 6":"#ec4899","OW2":"#06b6d4","2-Pack":"#fbbf24","4-Pack":"#f472b6","KC-S1":"#06b6d4","KC-S2":"#0891b2","KC-Excl":"#8b5cf6","Freddy":"#ca8a04"};
+const waveFilters=["All","Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","OW2","Packs","Keychains","Freddy"];
 let activeWave="All",viewMode="grid";
 const owned=new Set(JSON.parse(localStorage.getItem("ow_owned")||"[]"));
 const allItems=[...pops,...packs,...keychains];
@@ -732,10 +744,11 @@ function makeCard(data,delay){
   const ss=sizeStyle(data.size);
   const isKC=data.wave&&data.wave.startsWith("KC-");
   const body=document.createElement("div");body.className="card-body";
-  body.innerHTML=`${data.num?`<div class="card-num">#${data.num}</div>`:(isKC?`<div class="card-num">KEYCHAIN</div>`:"")}
+  body.innerHTML=`${data.num&&data.num!=="SE"?`<div class="card-num">#${data.num}</div>`:(data.num==="SE"?`<div class="card-num" style="color:#ca8a04">FREDDY FUNKO</div>`:(isKC?`<div class="card-num">KEYCHAIN</div>`:""))}
   <div class="card-name">${data.name}</div>
   <div class="card-tags">
     ${isKC?`<span class="size-tag" style="background:#0891b2;color:#fff">1.5"</span>`:(data.size?`<span class="size-tag" style="background:${ss.bg};color:${ss.fg}">${data.size}</span>`:"")}
+    ${data.le?`<span class="size-tag" style="background:rgba(202,138,4,0.2);color:#fbbf24;border:1px solid #ca8a04">◆ LE ${data.le.toLocaleString()}</span>`:""}
     ${data.excl?`<span class="excl-tag">${data.excl}</span>`:""}
   </div>`;
   card.appendChild(body);
@@ -798,7 +811,7 @@ waveFilters.forEach(w=>{
   const btn=document.createElement("button");
   btn.className="filter-btn"+(w==="All"?" active":"");
   btn.textContent=w;
-  const wc=w==="All"?"#f97316":w==="Packs"?"#fbbf24":w==="Keychains"?"#0891b2":(waveColors[w]||"#f97316");
+  const wc=w==="All"?"#f97316":w==="Packs"?"#fbbf24":w==="Keychains"?"#0891b2":w==="Freddy"?"#ca8a04":(waveColors[w]||"#f97316");
   if(w==="All")btn.style.cssText=`background:${wc};color:#000;border-color:${wc}`;
   btn.addEventListener("click",()=>{
     activeWave=w;
